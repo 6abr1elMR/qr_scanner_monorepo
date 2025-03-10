@@ -10,8 +10,11 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.6
+  flutter_bloc: ^8.1.3
   qr_scanner:
     path: ../../packages/qr_scanner
+  auth_biometric:
+    path: ../../packages/auth_biometric
 
 dev_dependencies:
   flutter_test:

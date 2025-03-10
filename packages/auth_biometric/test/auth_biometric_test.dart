@@ -33,13 +33,11 @@ void main() {
   test('Debe autenticar correctamente cuando el usuario usa biometría',
       () async {
     when(mockLocalAuth.authenticate(
-      localizedReason:
-          captureAnyNamed('localizedReason') ?? "Autenticación requerida",
-      options: anyNamed('options') ??
-          const AuthenticationOptions(
-            biometricOnly: true,
-            stickyAuth: true,
-          ),
+      localizedReason: "Autenticación requerida",
+      options: const AuthenticationOptions(
+        biometricOnly: true,
+        stickyAuth: true,
+      ),
     )).thenAnswer((_) async => true);
 
     final result = await authBiometric.authenticate();
@@ -48,12 +46,11 @@ void main() {
 
   test('Debe fallar autenticación cuando el usuario cancela', () async {
     when(mockLocalAuth.authenticate(
-      localizedReason: anyNamed('localizedReason') ?? "Autenticación requerida",
-      options: anyNamed('options') ??
-          const AuthenticationOptions(
-            biometricOnly: true,
-            stickyAuth: true,
-          ),
+      localizedReason: "Autenticación requerida",
+      options: const AuthenticationOptions(
+        biometricOnly: true,
+        stickyAuth: true,
+      ),
     )).thenAnswer((_) async => false);
 
     final result = await authBiometric.authenticate();
@@ -63,12 +60,11 @@ void main() {
   test('Debe manejar errores y retornar false si ocurre una excepción',
       () async {
     when(mockLocalAuth.authenticate(
-      localizedReason: anyNamed('localizedReason') ?? "Autenticación requerida",
-      options: anyNamed('options') ??
-          const AuthenticationOptions(
-            biometricOnly: true,
-            stickyAuth: true,
-          ),
+      localizedReason: "Autenticación requerida",
+      options: const AuthenticationOptions(
+        biometricOnly: true,
+        stickyAuth: true,
+      ),
     )).thenThrow(Exception("Error de autenticación"));
 
     final result = await authBiometric.authenticate();

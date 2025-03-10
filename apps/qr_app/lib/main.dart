@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:qr_scanner/qr_scanner.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:auth_biometric/auth_biometric.dart';
+import 'blocs/auth_bloc.dart';
+import 'screens/auth_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,50 +13,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
-    );
-  }
-}
-
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  String scannedCode = "";
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Escáner de QR")),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Código escaneado: $scannedCode"),
-            ElevatedButton(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => QRScannerView(
-                    onScanned: (code) {
-                      setState(() {
-                        scannedCode = code;
-                      });
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
-              ),
-              child: const Text("Escanear QR"),
-            ),
-          ],
-        ),
+    return BlocProvider(
+      create: (context) => AuthBloc(AuthBiometric()),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'QR Auth App',
+        theme: ThemeData(primarySwatch: Colors.blue),
+        home: const AuthScreen(),
       ),
     );
   }
