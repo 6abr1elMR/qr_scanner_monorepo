@@ -14,6 +14,8 @@ monorepo/
 │-- packages/
 │   ├── auth_biometric/       # Paquete para autenticación biométrica
 │   ├── qr_scanner/           # Paquete para escaneo de códigos QR
+│-- tests/
+│   ├── logs_test.txt         # Evidencia de pruebas unitarias
 │-- README.md                 # Documentación
 │-- pubspec.yaml               # Configuración del monorepo
 ```
@@ -69,23 +71,12 @@ QRScannerView(
 )
 ```
 
-## Scripts Útiles
+## Pruebas Unitarias
 
-### Limpiar y reconstruir dependencias
-```sh
-flutter clean && flutter pub get
+Para verificar las pruebas unitarias, se han generado evidencias de ejecución en el archivo:
+
+```
+tests/logs_test.txt
 ```
 
-### Analizar el código
-```sh
-flutter analyze
-```
-
-## Contribuciones
-
-1. Crea un branch con la nueva funcionalidad o corrección de bug.
-2. Realiza los cambios y confirma los commits.
-3. Abre un Pull Request.
-
-## Licencia
-Este proyecto está bajo la licencia MIT.
+Este archivo contiene los resultados de las pruebas ejecutadas con
